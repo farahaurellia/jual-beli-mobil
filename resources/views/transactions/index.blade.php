@@ -23,6 +23,8 @@
                             <th class="px-5 py-3 border-b-2 border-gray-200">ID</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200">Pelanggan</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200">Produk</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200">Jumlah</th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200">Harga /Barang</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200">Total Harga</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200">Tanggal</th>
                             <th class="px-5 py-3 border-b-2 border-gray-200 text-center">Aksi</th>
@@ -39,6 +41,12 @@
                             <td class="px-5 py-4 border-b border-gray-200">
                                 {{ $transaction->product->name }}
                                 <div class="text-xs text-gray-500">{{ $transaction->product->category->name ?? '-' }}</div>
+                            </td>
+                            <td class="px-5 py-4 border-b border-gray-200 font-medium">
+                                {{ number_format($transaction->amount, 0, ',', '.') }}
+                            </td>
+                            <td class="px-5 py-4 border-b border-gray-200 font-medium">
+                                Rp {{ number_format($transaction->price, 0, ',', '.') }}
                             </td>
                             <td class="px-5 py-4 border-b border-gray-200 font-medium">
                                 Rp {{ number_format($transaction->total_price, 0, ',', '.') }}

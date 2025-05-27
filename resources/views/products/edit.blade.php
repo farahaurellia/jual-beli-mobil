@@ -51,7 +51,7 @@
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
                             <input type="number" id="price" name="price" 
-                                   value="{{ old('price', $product->price) }}" step="0.01"
+                                   value="{{ old('price', $product->price) }}" step="0.01" min="1"
                                    class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    required>
                         </div>

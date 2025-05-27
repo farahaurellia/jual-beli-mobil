@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id(); // Kolom ID unik untuk setiap transaksi
             $table->unsignedBigInteger('customer_id'); // ID dari customer yang melakukan transaksi
             $table->unsignedBigInteger('product_id'); // ID dari produk yang dibeli
+            $table->unsignedBigInteger('amount');
+            $table->decimal('price', 10, 2);
             $table->decimal('total_price', 10, 2); // Total harga transaksi, tipe data decimal
             $table->date('transaction_date'); // Tanggal transaksi, tipe data date
             $table->timestamps(); // Kolom untuk mencatat waktu pembuatan dan perubahan data

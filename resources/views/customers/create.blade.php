@@ -38,8 +38,8 @@
                 <label for="phone" class="block text-gray-700 font-medium mb-2">No. Telp Pelanggan</label>
                 <div class="relative">
                     <input type="number" id="phone" name="phone" value="{{ old('phone') }}" 
-                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                           required>
+                           class="w-full pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            minlength="10" required>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                 <label for="address" class="block text-gray-700 font-medium mb-2">Alamat Pelanggan</label>
                 <div class="relative">
                     <input type="text" id="address" name="address" value="{{ old('address') }}" 
-                           class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           class="w-full pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>
             </div>

@@ -26,7 +26,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="customer_id" class="block text-gray-700 font-medium mb-2">Pelanggan *</label>
+                        <label for="customer_id" class="block text-gray-700 font-medium mb-2">Pelanggan</label>
                         <select id="customer_id" name="customer_id" required
                                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="">-- Pilih Pelanggan --</option>
@@ -39,32 +39,53 @@
                     </div>
 
                     <div>
-                        <label for="product_id" class="block text-gray-700 font-medium mb-2">Produk *</label>
+                        <label for="product_id" class="block text-gray-700 font-medium mb-2">Produk</label>
                         <select id="product_id" name="product_id" required
                                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="">-- Pilih Produk --</option>
                             @foreach($products as $product)
                                 <option value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }}
                                     data-price="{{ $product->price }}">
-                                    {{ $product->name }} (Rp {{ number_format($product->price, 0, ',', '.') }})
+                                    {{ $product->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
                     <div>
-                        <label for="total_price" class="block text-gray-700 font-medium mb-2">Total Harga *</label>
+                        <label for="amount" class="block text-gray-700 font-medium mb-2">Jumlah Barang</label>
                         <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
-                            <input type="number" id="total_price" name="total_price" 
-                                   value="{{ old('total_price') }}" step="0.01" min="0"
-                                   class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            <input type="number" id="amount" name="amount" 
+                                   value="{{ old('amount') }}" step="0.01" 
+                                   class="w-full  px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    required>
                         </div>
                     </div>
 
                     <div>
-                        <label for="transaction_date" class="block text-gray-700 font-medium mb-2">Tanggal Transaksi *</label>
+                        <label for="price" class="block text-gray-700 font-medium mb-2">Harga /Barang</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
+                            <input type="number" id="price" name="price" 
+                                   value="{{ old('price') }}" step="0.01" 
+                                   class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   readonly required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="total_price" class="block text-gray-700 font-medium mb-2">Total Harga</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
+                            <input type="number" id="total_price" name="total_price" 
+                                   value="{{ old('total_price') }}" step="0.01" min="0"
+                                   class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   readonly required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="transaction_date" class="block text-gray-700 font-medium mb-2">Tanggal Transaksi</label>
                         <input type="date" id="transaction_date" name="transaction_date" 
                                value="{{ old('transaction_date', now()->format('Y-m-d')) }}"
                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -86,4 +107,31 @@
             </form>
         </div>
     </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const productSelect = document.getElementById('product_id');
+    const priceInput = document.getElementById('price');
+    const amountInput = document.getElementById('amount');
+    const totalInput = document.getElementById('total_price');
+
+    function updateTotal() {
+        const price = parseFloat(priceInput.value) || 0;
+        const amount = parseFloat(amountInput.value) || 0;
+        const total = price * amount;
+        totalInput.value = total.toFixed(2);
+    }
+
+    productSelect.addEventListener('change', function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const price = selectedOption.getAttribute('data-price');
+        priceInput.value = parseFloat(price || 0).toFixed(2);
+        updateTotal(); 
+    });
+
+    amountInput.addEventListener('input', updateTotal);
+});
+</script>
+
+
 </x-layouts.app>

@@ -48,8 +48,8 @@
 
                     <div>
                         <label for="phone" class="block text-gray-700 font-medium mb-2">No. Telp Pelanggan</label>
-                        <input type="tel" id="phone" name="phone" value="{{ old('phone', $customer->phone) }}"
-                               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        <input type="number" id="phone" name="phone" value="{{ old('phone', $customer->phone) }}"
+                               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
                                required>
                     </div>
 

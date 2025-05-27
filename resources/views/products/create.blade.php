@@ -38,7 +38,7 @@
                 <label for="price" class="block text-gray-700 font-medium mb-2">Harga Produk</label>
                 <div class="relative">
                     <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">Rp</span>
-                    <input type="number" id="price" name="price" value="{{ old('price') }}" step="0.01"
+                    <input type="number" id="price" name="price" value="{{ old('price') }}" step="0.01" min="1"
                            class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                            required>
                 </div>

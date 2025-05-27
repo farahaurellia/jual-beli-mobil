@@ -33,7 +33,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="customer_id" class="block text-gray-700 font-medium mb-2">Pelanggan *</label>
+                        <label for="customer_id" class="block text-gray-700 font-medium mb-2">Pelanggan</label>
                         <select id="customer_id" name="customer_id" required
                                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="">-- Pilih Pelanggan --</option>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div>
-                        <label for="product_id" class="block text-gray-700 font-medium mb-2">Produk *</label>
+                        <label for="product_id" class="block text-gray-700 font-medium mb-2">Produk</label>
                         <select id="product_id" name="product_id" required
                                 class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             <option value="">-- Pilih Produk --</option>
@@ -62,7 +62,28 @@
                     </div>
 
                     <div>
-                        <label for="total_price" class="block text-gray-700 font-medium mb-2">Total Harga *</label>
+                        <label for="amount" class="block text-gray-700 font-medium mb-2">Jumlah Barang</label>
+                        <div class="relative">
+                            <input type="number" id="amount" name="amount" 
+                                   value="{{ old('amount', $transaction->amount) }}" step="0.01" 
+                                   class="w-full  px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="price" class="block text-gray-700 font-medium mb-2">Harga /Barang</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
+                            <input type="number" id="price" name="price" 
+                                   value="{{ old('price', $transaction->price) }}" step="0.01" 
+                                   class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   readonly required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="total_price" class="block text-gray-700 font-medium mb-2">Total Harga</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">Rp</span>
                             <input type="number" id="total_price" name="total_price" 
@@ -73,7 +94,7 @@
                     </div>
 
                     <div>
-                        <label for="transaction_date" class="block text-gray-700 font-medium mb-2">Tanggal Transaksi *</label>
+                        <label for="transaction_date" class="block text-gray-700 font-medium mb-2">Tanggal Transaksi</label>
                         <input type="date" id="transaction_date" name="transaction_date" 
                                value="{{ old('transaction_date', $transaction->transaction_date) }}"
                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

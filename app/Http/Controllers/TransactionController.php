@@ -37,6 +37,8 @@ class TransactionController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'product_id' => 'required|exists:products,id',
+            'amount' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1',
             'total_price' => 'required|numeric|min:0',
             'transaction_date' => 'required|date',
         ]);
@@ -69,6 +71,8 @@ class TransactionController extends Controller
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'product_id' => 'required|exists:products,id',
+            'amount' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1',
             'total_price' => 'required|numeric|min:0',
             'transaction_date' => 'required|date',
         ]);
