@@ -89,7 +89,7 @@
                             <input type="number" id="total_price" name="total_price" 
                                    value="{{ old('total_price', $transaction->total_price) }}" step="0.01" min="0"
                                    class="w-full pl-8 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                   required>
+                                   readonly required>
                         </div>
                     </div>
 
@@ -98,7 +98,7 @@
                         <input type="date" id="transaction_date" name="transaction_date" 
                                value="{{ old('transaction_date', $transaction->transaction_date) }}"
                                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               required>
+                               readonly required>
                     </div>
                 </div>
 
@@ -115,4 +115,29 @@
             </form>
         </div>
     </div>
+
+        <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const productSelect = document.getElementById('product_id');
+    const priceInput = document.getElementById('price');
+    const amountInput = document.getElementById('amount');
+    const totalInput = document.getElementById('total_price');
+
+    function updateTotal() {
+        const price = parseFloat(priceInput.value) || 0;
+        const amount = parseFloat(amountInput.value) || 0;
+        const total = price * amount;
+        totalInput.value = total.toFixed(2);
+    }
+
+    productSelect.addEventListener('change', function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const price = selectedOption.getAttribute('data-price');
+        priceInput.value = parseFloat(price || 0).toFixed(2);
+        updateTotal(); 
+    });
+
+    amountInput.addEventListener('input', updateTotal);
+});
+</script>
 </x-layouts.app>
